@@ -1,0 +1,15 @@
+{
+  "name": "az-func-node-cosmos",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "func start",
+    "test": "echo \"No tests yet...\""
+  },
+  "dependencies": {
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "prettier": "^2.4.1"
+  }
+}
