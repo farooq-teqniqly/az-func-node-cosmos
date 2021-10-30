@@ -1,8 +1,5 @@
 import { CosmosClient } from '@azure/cosmos';
-import * as dotenv from 'dotenv';
 import { WineService } from './services/WineService';
-
-dotenv.config();
 
 const endpoint = process.env.COSMOS_DB_ENDPOINT;
 const key = process.env.COSMOS_DB_KEY;
