@@ -1,5 +1,5 @@
 import { AzureFunction, Context, HttpRequest } from '@azure/functions';
-import { wineService } from '../services/InitServices';
+import { wineService } from '../Startup';
 
 const httpTrigger: AzureFunction = async function (
   context: Context,

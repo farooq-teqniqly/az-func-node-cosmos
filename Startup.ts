@@ -1,5 +1,6 @@
 import { CosmosClient } from '@azure/cosmos';
 import * as dotenv from 'dotenv';
+import { WineService } from './services/WineService';
 
 dotenv.config();
 
@@ -10,4 +11,6 @@ const client = new CosmosClient({ endpoint, key });
 const database = client.database(process.env.COSMOS_DB);
 const container = database.container(process.env.COSMOS_DB_CONTAINER);
 
-export default container;
+const wineService = new WineService(container);
+
+export { container, wineService };
