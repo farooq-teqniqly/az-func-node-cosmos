@@ -1,7 +1,6 @@
 import { AzureFunction, Context, HttpRequest } from '@azure/functions';
 import { AddWineRequest } from '../models/AddWineRequest.interface';
-import { v4 as uuid } from 'uuid';
-import container from '../utils/cosmosUtils';
+import { WineService } from '../services/WineService';
 
 const httpTrigger: AzureFunction = async function (
   context: Context,
@@ -19,16 +18,12 @@ const httpTrigger: AzureFunction = async function (
     return;
   }
 
-  const wine = {
-    id: uuid(),
-    ...addWineRequest,
-  };
-
-  const { resource } = await container.items.create(wine);
+  const wineService = new WineService();
+  const addWineResponse = await wineService.AddWine(addWineRequest);
 
   context.res = {
     status: 201,
-    body: resource,
+    body: addWineResponse,
   };
 };
 
