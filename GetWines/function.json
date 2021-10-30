@@ -5,7 +5,7 @@
       "type": "httpTrigger",
       "direction": "in",
       "name": "req",
-      "methods": ["post"],
+      "methods": ["get"],
       "route": "wines"
     },
     {
@@ -14,5 +14,5 @@
       "name": "res"
     }
   ],
-  "scriptFile": "../dist/AddWine/index.js"
+  "scriptFile": "../dist/GetWines/index.js"
 }
