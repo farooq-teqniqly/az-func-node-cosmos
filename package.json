@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "prestart": "npm run build",
     "start": "func start",
     "test": "echo \"No tests yet...\""
   },
@@ -12,6 +15,9 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "prettier": "^2.4.1"
+    "@azure/functions": "^1.2.3",
+    "@types/node": "^16.11.6",
+    "prettier": "^2.4.1",
+    "typescript": "^4.0.0"
   }
 }
