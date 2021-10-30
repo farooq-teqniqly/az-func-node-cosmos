@@ -1,18 +1,22 @@
-import container from '../utils/cosmosUtils';
 import { v4 as uuid } from 'uuid';
 import { AddWineResponse } from '../models/AddWineResponse.interface';
 import { AddWineRequest } from '../models/AddWineRequest.interface';
 import { GetWineResponse } from '../models/GetWineResponse.interface';
 import { Meta } from '../models/Meta.interface';
+import { Container } from '@azure/cosmos';
 
 export class WineService {
+  constructor(private container: Container) {
+    this.container = container;
+  }
+
   async AddWine(req: AddWineRequest): Promise<AddWineResponse> {
     const wine = {
       id: uuid(),
       ...req,
     };
 
-    const { resource } = await container.items.create(wine);
+    const { resource } = await this.container.items.create(wine);
 
     return {
       id: resource.id,
@@ -21,7 +25,10 @@ export class WineService {
 
   async GetWines(): Promise<GetWineResponse[]> {
     const querySpec = `SELECT * FROM ${process.env.COSMOS_DB_CONTAINER}`;
-    const { resources } = await container.items.query(querySpec).fetchAll();
+
+    const { resources } = await this.container.items
+      .query(querySpec)
+      .fetchAll();
 
     const responseModels: GetWineResponse[] = [];
     resources.forEach((r) => {

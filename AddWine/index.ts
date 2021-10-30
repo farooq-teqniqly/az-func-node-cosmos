@@ -1,6 +1,6 @@
 import { AzureFunction, Context, HttpRequest } from '@azure/functions';
 import { AddWineRequest } from '../models/AddWineRequest.interface';
-import { WineService } from '../services/WineService';
+import { wineService } from '../services/InitServices';
 
 const httpTrigger: AzureFunction = async function (
   context: Context,
@@ -18,7 +18,6 @@ const httpTrigger: AzureFunction = async function (
     return;
   }
 
-  const wineService = new WineService();
   const addWineResponse = await wineService.AddWine(addWineRequest);
 
   context.res = {
