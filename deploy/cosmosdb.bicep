@@ -20,7 +20,7 @@ resource cosmosAccount 'Microsoft.DocumentDB/databaseAccounts@2021-04-15' = {
   }
 }
 
-output cosmosAccountMetadata object = {
+output deploymentOutputs object = {
   documentEndpoint: cosmosAccount.properties.documentEndpoint
   primaryMasterKey: cosmosAccount.listKeys().primaryMasterKey
 }
