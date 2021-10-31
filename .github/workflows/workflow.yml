@@ -1,0 +1,9 @@
+name: az-func-node-cosmos-deployment
+on: [workflow-dispatch]
+
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'placeholder step'
+        run: echo "Hello World!"
