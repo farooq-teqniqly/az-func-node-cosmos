@@ -10,8 +10,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      name: Placeholder
-      run: echo $GITHUB_REF
+      - name: Placeholder
+        run: echo $GITHUB_REF
       - uses: actions/checkout@v2
         with:
           ref: ${{env.BRANCH}}
