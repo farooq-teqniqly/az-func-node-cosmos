@@ -4,6 +4,7 @@ param solutionName string
 
 @allowed([
   'dev'
+  'test'
 ])
 param environmentName string
 
