@@ -1,8 +1,5 @@
 name: az-func-node-cosmos-deployment
-on:
-  push:
-    tags:
-      - 'release-*'
+on: push
 
 env:
   ENVIRONMENT: dev
@@ -13,6 +10,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      name: Placeholder
+      run: echo $GITHUB_REF
       - uses: actions/checkout@v2
         with:
           ref: ${{env.BRANCH}}
