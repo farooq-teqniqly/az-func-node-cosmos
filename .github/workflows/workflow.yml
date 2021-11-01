@@ -4,17 +4,36 @@ on: push
 env:
   ENVIRONMENT: dev
   REGION: westus
-  BRANCH: main
 
 jobs:
-  deploy:
+  deployProd:
+    env:
+      ENVIRONMENT: dev
+    if: ${{ startsWith(github.ref, 'refs/tags/release-' }}
     runs-on: ubuntu-latest
     steps:
-      - name: Placeholder
-        run: echo $GITHUB_REF
       - uses: actions/checkout@v2
         with:
-          ref: ${{env.BRANCH}}
+          ref: main
+      - uses: azure/login@v1
+        with:
+          creds: ${{secrets.AZURE_CREDENTIALS}}
+      - uses: azure/arm-deploy@v1
+        with:
+          scope: subscription
+          region: ${{env.REGION}}
+          template: ./deploy/main.bicep
+          parameters: ./deploy/parameters.${{env.ENVIRONMENT}}.json
+
+  deployTest:
+    env:
+      ENVIRONMENT: test
+    if: ${{ startsWith(github.ref, 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: main
       - uses: azure/login@v1
         with:
           creds: ${{secrets.AZURE_CREDENTIALS}}
