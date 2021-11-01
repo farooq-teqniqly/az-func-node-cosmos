@@ -9,7 +9,7 @@ jobs:
   deployProd:
     env:
       ENVIRONMENT: dev
-    if: ${{ startsWith(github.ref, 'refs/tags/release-' }}
+    if: ${{ startsWith(github.ref, 'refs/tags/release-') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -28,7 +28,7 @@ jobs:
   deployTest:
     env:
       ENVIRONMENT: test
-    if: ${{ startsWith(github.ref, 'refs/heads/main' }}
+    if: ${{ startsWith(github.ref, 'refs/heads/main') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
