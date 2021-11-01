@@ -17,4 +17,4 @@ jobs:
       - uses: azure/arm-deploy@v1
         with:
           template: ./deploy/main.bicep
-          parameters: ./deploy/parameters.${{env.ENVIRONMENT}}.json  
+          parameters: ./deploy/parameters.${{env.ENVIRONMENT}}.json 
