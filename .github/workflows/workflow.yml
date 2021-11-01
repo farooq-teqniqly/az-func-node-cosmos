@@ -16,5 +16,6 @@ jobs:
           creds: ${{secrets.AZURE_CREDENTIALS}}
       - uses: azure/arm-deploy@v1
         with:
+          scope: subscription
           template: ./deploy/main.bicep
-          parameters: ./deploy/parameters.${{env.ENVIRONMENT}}.json 
+          parameters: ./deploy/parameters.${{env.ENVIRONMENT}}.json
