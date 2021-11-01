@@ -53,11 +53,13 @@ resource appStorageAccount 'Microsoft.Storage/storageAccounts@2021-06-01' = {
   }
 }
 
-
 resource functionApp 'Microsoft.Web/sites@2021-02-01' = {
   name: functionAppName
   location: location
   kind: kind
+  identity: {
+     type: 'SystemAssigned'
+  }
   properties: {
     serverFarmId: appServicePlan.id
     siteConfig: {
@@ -109,4 +111,8 @@ resource functionApp 'Microsoft.Web/sites@2021-02-01' = {
 
 output deploymentOutputs object = {
   functionAppHostName: functionApp.properties.defaultHostName
+  functionAppManagedIdentity : {
+    appId: functionApp.identity.principalId
+    tenantId: functionApp.identity.tenantId
+  }
 } 
