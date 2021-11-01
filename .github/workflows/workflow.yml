@@ -1,5 +1,8 @@
 name: az-func-node-cosmos-deployment
-on: [workflow_dispatch]
+on:
+  push:
+    tags:
+      - 'release-*'
 
 env:
   ENVIRONMENT: dev
