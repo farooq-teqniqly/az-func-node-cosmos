@@ -6,10 +6,7 @@ import { Configuration } from '@azure/msal-node';
 import { AuthSettings } from '../models/AuthSettings.type';
 
 export class TokenValidatorService {
-  constructor(
-    private authSettings: AuthSettings,
-    private msalConfig: Configuration
-  ) {}
+  constructor(private tenantId: string, private msalConfig: Configuration) {}
 
   async validateToken(authToken: string) {
     const verifiedToken = await this.verifyTokenSignature(authToken);
@@ -19,7 +16,7 @@ export class TokenValidatorService {
   private validateIdTokenClaims(idTokenClaims: IdTokenClaims) {
     const now = Math.round(new Date().getTime() / 1000);
 
-    if (!idTokenClaims.iss.includes(this.authSettings.credentials.tenantId)) {
+    if (!idTokenClaims.iss.includes(this.tenantId)) {
       throw 'Invalid issuer.';
     }
 
